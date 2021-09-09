@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Pago</title>
+</head>
+<body>
+  <h1>Crear pago</h1>
+
+  <form id="paymentForm">
+
+    <label for="isReturn">Vuelto</label>
+    <input type="checkbox" id="isReturn">
+
+    <label for="currency">Moneda</label>
+    <select name="currency" id="currency"></select>
+
+    <label for="method">Método</label>
+    <select name="method" id="method"></select>
+
+    <label for="account">Cuénta</label>
+    <select name="account" id="account"></select>
+
+    <label for="rate">Tasa</label>
+    <input type="number" id="rate">
+
+    <label for="amount">Monto</label>
+    <input type="number" id="amount">
+
+    <button id="addButton">Agregar</button>
+    
+  </form>
+  
+  <script src="./createPayment.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guerra App</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    li {
+      list-style: none;
+    }
+    ul {
+      padding: 0;
+    }
+    main h3 {
+      text-align: center;
+      font-size: 22px;
+    }
+    .salesList {
+      display: flex;
+      flex-direction: column;
+      max-width: max-content;
+      height: 400px;
+      border: 1px solid black;
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+    .salesList__header, .salesList__row {
+      display: grid;
+      grid-template-columns: 125px 300px 125px;
+      padding: 4px;
+    }
+    .salesList__header__title {
+      font-weight: 700;
+    }
+    .salesList__row:hover {
+      cursor: pointer;
+      background-color: aquamarine;
+    }
+    .summaryList {
+      display: flex;
+      flex-direction: column;
+      width: max-content;
+      border: 1px solid black;
+      font-size: 18px;
+    }
+    .summaryList__header {
+      font-weight: 700;
+    }
+    .summaryList__header, .summaryList__row {
+      display: grid;
+      grid-template-columns: 100px 200px 125px 125px;
+      padding: 5px;
+    }
+    .salesList__row__item--sale-id {
+      display: none;
+    }
+    ol {
+      list-style: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div id="rateContainer">
+
+    </div>
+    
+    <input type="date" id="mainDate" style="display: block;" onchange="handler(event)">
+  </header>
+
+  <main>
+    <h3>Ventas del Jueves 12 Agosto - 2021</h3>
+
+    <ol id="mainSaleList" class="salesList">
+
+    </ol>
+
+  </main>
+
+  <div class="summaryList">
+
+    <div class="summaryList__header">
+      <span class="summaryList__header__title"></span>
+      <span class="summaryList__header__title">Bolívares</span>
+      <span class="summaryList__header__title">Dólares</span>
+      <span class="summaryList__header__title">Total $</span>
+    </div>
+
+    <div class="summaryList__row">
+      <span class="summaryList__row__item">Día</span>
+      <span class="summaryList__row__item">18,520,000</span>
+      <span class="summaryList__row__item">59.63</span>
+      <span class="summaryList__row__item">70.23</span>
+    </div>
+
+    <div class="summaryList__row">
+      <span class="summaryList__row__item">Semana</span>
+      <span class="summaryList__row__item">120,556,933</span>
+      <span class="summaryList__row__item">115.20</span>
+      <span class="summaryList__row__item">220.99</span>
+    </div>
+
+    <div class="summaryList__row">
+      <span class="summaryList__row__item">Mes</span>
+      <span class="summaryList__row__item">1,200,000,000</span>
+      <span class="summaryList__row__item">369.25</span>
+      <span class="summaryList__row__item">820.66</span>
+    </div>
+
+  </div>
+
+  <button type="button" id="addSaleBtn">Crear venta</button>
+
+  <!-- <button id="testBtn" type="button">Prueba</button> -->
+
+  <script src="./RateFrame.js"></script>
+  <script src="./renderer.js"></script>
+</body>
+</html>

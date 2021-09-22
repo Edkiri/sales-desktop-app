@@ -1,5 +1,5 @@
 {
-  "name": "sales-electron",
+  "name": "sales-electron-app",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -8,13 +8,13 @@
     "lint": "eslint -c .eslintrc --ext .ts ./src",
     "start": "npm run build && electron ./dist/main/main.js"
   },
-  "repository": "https://github.com/Edkiri/sales-electron",
+  "repository": "",
   "keywords": [
     "Electron",
     "typescript"
   ],
   "author": "Eduardo Kiriakos",
-  "license": "MIT",
+  "license": "",
   "devDependencies": {
     "@types/node": "^16.9.0",
     "@typescript-eslint/eslint-plugin": "^4.31.0",

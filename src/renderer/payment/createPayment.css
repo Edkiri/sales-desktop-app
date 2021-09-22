@@ -1,0 +1,117 @@
+@font-face {
+  font-family: secular-one;
+  src: url("../SecularOne-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: alegreya-sans;
+  src: url("../AlegreyaSans-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: ubuntu;
+  src: url("../Ubuntu-Regular.ttf") format("truetype");
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+h1 {
+  font-family: secular-one;
+  font-size: 28px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.paymentForm {
+  width: 95%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.paymentForm label {
+  font-family: ubuntu;
+  font-size: 18px;
+  display: block;
+  font-weight:700;
+  margin-bottom: 10px;
+}
+.paymentForm .addButton {
+  background:linear-gradient(to bottom,#22abe9 5%,#36caf0 100%);
+  box-shadow:inset 0 1px 0 0 #7bdcf4;
+  border:1px solid #0F799E;
+  color:#fff;
+  font-size:18px;
+  font-weight:700;
+  text-shadow:0 1px 0 #13506D;
+  border-radius: 3px;
+  padding: 10px 0px;
+  font-family: secular-one;
+  width: 100%;
+  align-self: center;
+}
+.paymentForm .addButton:hover{
+  background: linear-gradient(to bottom,#36caf0 5%,#22abe9 100%);
+  cursor: pointer;
+}
+.paymentForm select {
+  padding:10px;
+  border-radius:5px;
+  border:1px solid #cbcbcb;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.18);
+  font-size:18px;
+  font-family: ubuntu;
+  width: 100%;
+}
+.paymentForm input:not(#isReturn) {
+  font-size: 18px;
+  appearance: none;
+  outline: none;
+  font-family: ubuntu;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #cbcbcb;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.18);
+  width: 100%;
+}
+.paymentForm > div {
+  width: 100%;
+}
+.typeContainer {
+  display: flex;
+  align-items: flex-end;
+}
+.typeContainer label {
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 0px;
+}
+.currAndMethContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.typeContainer input {
+  height: 21px;
+  width: 21px;
+}
+.currContainer, .methodContainer {
+  width: 48%;
+}
+#rate::-webkit-inner-spin-button,
+#rate::-webkit-inner-spin-button,
+#amount::-webkit-outer-spin-button,
+#amount::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
+  margin: 0;
+}

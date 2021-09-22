@@ -8,10 +8,12 @@ class OrderTree extends Subject {
     this.orderIndexAux = 0;
 
     this.addOrderBtn = document.createElement('button');
-    this.addOrderBtn.textContent = "Agregar";
+    this.addOrderBtn.type = "button";
+    this.addOrderBtn.classList.add("addOrderBtn");
 
     this.removeOrderBtn = document.createElement('button');
-    this.removeOrderBtn.textContent = "Eliminar";
+    this.removeOrderBtn.type = "button";
+    this.removeOrderBtn.classList.add("removeOrderBtn");
     this.removeOrderBtn.disabled = true;
 
     this.tree.parentElement.append(this.addOrderBtn, this.removeOrderBtn);
@@ -28,6 +30,7 @@ class OrderTree extends Subject {
       this.orderIndexAux++;
       treeRow.classList.add("orderListRow");
       treeRow.innerHTML = `
+        <span>${orderData.productCode}</span>
         <span>${orderData.productName}</span>
         <span>${orderData.amount}</span>
         <span>${orderData.productPrice}</span>

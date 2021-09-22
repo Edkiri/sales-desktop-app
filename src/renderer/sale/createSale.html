@@ -6,76 +6,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../order/styles.css">
   <link rel="stylesheet" href="../payment/styles.css">
+  <link rel="stylesheet" href="./createSale.css">
   <title>Nueva Venta</title>
 </head>
 <body>
 
   <header>
-    <a href="../../main/index.html">Atrás</a>
+    <a class="backBtn" href="../../main/index.html"></a>
     <h1>Nueva Venta</h1>
   </header>
 
-  <div class="client-container" id="clientContainer"></div>
+  <div class="mainContainer">
 
-  <div class="descriptionContainer">
-    <label for="descriptionInput">Descripción</label>
-    <input type="text" id="descriptionInput">
-  </div>
-
-
-  <div id="ordersContainer">
-    <h3>Orders</h3>
-    <ol id="orderTree" class="orderTree">
-      <li class="orderHeaderRow">
-        <span>Nombre</span>
-        <span>Cantidad</span>
-        <span>Precio/Unidad</span>
-        <span>Total $</span>
-      </li>
-    </ol>
-  </div>
-
-
-  <div class="paymentContainer">
-    <h3>Pagos</h3>
-    <ol id="paymentTree" class="paymentTree">
-      <li class="paymentTreeHeader">
-        <span>Monto</span>
-        <span>Moneda</span>
-        <span>Método</span>
-      </li>
-    </ol>
-  </div>
-
-  <div class="totalMainContainer">
-
-    <div class="totalOrdersContainer">
-      <span>Órdenes:</span>
-      <p>
-        <span id="totalOrdersUsd">0</span>$ 
-        (<span id="totalOrdersBs">0</span>bs)
-      </p>
+    <div class="client-container" id="clientContainer"></div>
+  
+    <div class="descriptionContainer">
+      <label for="descriptionInput">Descripción :</label>
+      <input type="text" id="descriptionInput">
     </div>
-
-    <div class="totalPaymentsContainer">
-      <span>Pagos:</span>
-      <p>
-        <span id="totalPaymentsUsd">0</span>$ 
-        (<span id="totalPaymentsBs">0</span>bs)
-      </p>
+  
+  
+    <div class="ordersContainer">
+      <h3>Órdenes :</h3>
+      <ol id="orderTree" class="orderTree">
+        <li class="orderHeaderRow">
+          <span>Código</span>
+          <span>Nombre</span>
+          <span>Cantidad</span>
+          <span>Precio/Und $</span>
+          <span>Total $</span>
+        </li>
+      </ol>
     </div>
-
-    <div class="totalRemaining">
-      <span>Pendiente:</span>
-      <p>
-        <span id="totalRemainingUsd">0</span>$ 
-        (<span id="totalRemainingBs">0</span>bs)
-      </p>
+  
+    <div class="bottomContainer">
+      
+      <div class="paymentContainer">
+        <h3>Pagos :</h3>
+        <ol id="paymentTree" class="paymentTree">
+          <li class="paymentTreeHeader">
+            <span>Monto</span>
+            <span>Moneda</span>
+            <span>Método</span>
+          </li>
+        </ol>
+      </div>
+    
+      <div class="totalMainContainer">
+    
+        <div class="totalOrdersContainer">
+          <span>Órdenes :</span>
+          <p>
+            <span id="totalOrdersUsd">0</span>$ 
+            (<span id="totalOrdersBs">0</span>bs)
+          </p>
+        </div>
+    
+        <div class="totalPaymentsContainer">
+          <span>Pagos :</span>
+          <p>
+            <span id="totalPaymentsUsd">0</span>$ 
+            (<span id="totalPaymentsBs">0</span>bs)
+          </p>
+        </div>
+    
+        <div class="totalRemaining">
+          <span>Pendiente :</span>
+          <p>
+            <span id="totalRemainingUsd">0</span>$ 
+            (<span id="totalRemainingBs">0</span>bs)
+          </p>
+        </div>
+    
+        
+      </div>
+      
     </div>
-
-    <button id="createSaleBtn">Crear</button>
+    
+    <button id="createSaleBtn">Crear Venta</button>
 
   </div>
+
   
   <script src="../Subject.js"></script>
   <script src="../client/ClientFrame.js"></script>

@@ -81,3 +81,26 @@ addSaleBtn.onclick = () => {
     window.api.send('createSale');
   }
 }
+const deleteSaleBtn = document.getElementById("deleteSaleBtn");
+
+document.addEventListener('click', e => {
+  if (e.target.matches('.salesList__row span')) {
+    const treeRow = e.target.parentElement;
+    selectRow(treeRow);
+  } else if(e.target.matches('.salesList__row')) {
+    const treeRow = e.target;
+    selectRow(treeRow);
+  }
+});
+
+function selectRow(tag) {
+  const selectedRow = document.querySelector(".salesList__row.selected");
+  if (selectedRow == tag) {
+    tag.classList.remove('selected');
+    deleteSaleBtn.disabled = true;
+  } else {
+    if(selectedRow) selectedRow.classList.remove('selected');
+    tag.classList.add("selected");
+    deleteSaleBtn.disabled = false;
+  };
+}

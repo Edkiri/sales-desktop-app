@@ -49,3 +49,9 @@ createSaleBtn.addEventListener('click', () => {
   }
   window.api.send("sendNewSaleData", newSaleData);
 })
+
+document.addEventListener("keydown", e => {
+  if(e.key == "F1") {
+    orderTree.addOrderBtn.click();
+  }
+})

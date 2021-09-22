@@ -23,7 +23,7 @@ function parseSales(sales: Sale[]): SaleMainListRow[] {
       }
     })
     const totalOrders: number = sale.orders.reduce(
-      (ac: number, order) => ac + <number>order.price, 0
+      (ac: number, order) => ac + (<number>order.price * <number>order.amount), 0
     );
     let totalToPrint = totalOrders;
     const totalSale = totalOrders - totalPayments;

@@ -19,8 +19,8 @@ export function addOrderEvents(win: BrowserWindow, connection: Connection): void
     })
     newOrderWin.loadURL(path.join(__dirname, "../../../src/renderer/order/createOrder.html"));
     newOrderWin.once('ready-to-show', () => {
+      newOrderWin.maximize();
       newOrderWin.show();
-      newOrderWin.webContents.openDevTools();
     });
   })
   

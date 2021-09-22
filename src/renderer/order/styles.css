@@ -1,3 +1,15 @@
+@font-face {
+  font-family: secular-one;
+  src: url("../SecularOne-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: alegreya-sans;
+  src: url("../AlegreyaSans-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: ubuntu;
+  src: url("../Ubuntu-Regular.ttf") format("truetype");
+}
 * {
   box-sizing: border-box;
 }
@@ -7,30 +19,92 @@ li {
 ol {
   padding: 0;
 }
+.ordersContainer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
 .orderTree {
   display: flex;
   flex-direction: column;
-  height: 200px;
-  border: 1px solid black;
-  margin-bottom: 30px;
+  flex-grow: 2;
+  border:1px solid #cbcbcb;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.18);
   font-size: 18px;
-  width: 800px;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  font-family: ubuntu;
+}
+.orderTree::-webkit-scrollbar {
+  display: none;
+}
+.orderHeaderRow {
+  padding: 8px 10px;
+  background-color: #cbcbcb;
+}
+.orderListRow {
+  padding: 6px 10px;
 }
 .orderHeaderRow, .orderListRow {
   display: grid;
   width: 100%;
-  grid-template-columns: 50% 1fr 1fr 1fr;
-  padding: 4px;
+  grid-template-columns: 1fr 50% 0.8fr 1fr 0.8fr;
 }
 .orderHeaderRow span {
+  font-family: secular-one;
   font-weight: 700;
+  margin-right: 10px;
+  border-right: 2px solid gray;
 }
 .orderListRow:hover {
-  cursor: context-menu;
+  cursor: pointer;
   background-color: lightblue;
 }
 .orderListRow.selected {
   background-color: lightseagreen;
+}
+.addOrderBtn {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  background-image: url("./add.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  transition: .1s;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+.addOrderBtn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.removeOrderBtn {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  background-image: url("./delete.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  transition: .1s;
+  position: absolute;
+  right: 70px;
+  bottom: 20px;
+}
+.removeOrderBtn:disabled {
+  opacity: .2;
+}
+.removeOrderBtn:hover:enabled {
+  cursor: pointer;
+  transform: scale(1.1);
 }

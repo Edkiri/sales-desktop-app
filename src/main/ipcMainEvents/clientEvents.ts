@@ -19,6 +19,10 @@ export function addClientEvents(win: BrowserWindow, connection: Connection): voi
         parent: win,
         modal: true,
         show: false,
+        maximizable: false,
+        minimizable: false,
+        width: 450,
+        height: 650,
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: true,
@@ -29,7 +33,6 @@ export function addClientEvents(win: BrowserWindow, connection: Connection): voi
       newClientWin.loadURL(path.join(__dirname, "../../../src/renderer/client/createOrUpdateClientForm.html"));
       newClientWin.once('ready-to-show', () => {
         newClientWin.show();
-        newClientWin.webContents.openDevTools();
         newClientWin.webContents.send('newClientIdCard', clientIdCard);
       });
     }
@@ -64,6 +67,10 @@ export function addClientEvents(win: BrowserWindow, connection: Connection): voi
       parent: win,
       modal: true,
       show: false,
+      width: 450,
+      height: 650,
+      maximizable: false,
+      minimizable: false,
       webPreferences: {
         nodeIntegration: false,
         contextIsolation: true,
@@ -74,7 +81,6 @@ export function addClientEvents(win: BrowserWindow, connection: Connection): voi
     updateClientWin.loadURL(path.join(__dirname, "../../../src/renderer/client/createOrUpdateClientForm.html"));
       updateClientWin.once('ready-to-show', () => {
         updateClientWin.show();
-        updateClientWin.webContents.openDevTools();
         updateClientWin.webContents.send('printClientInfo', client);
       });
   })
@@ -99,6 +105,10 @@ export function addClientEvents(win: BrowserWindow, connection: Connection): voi
       parent: win,
       modal: true,
       show: false,
+      width: 600, 
+      height: 450,
+      maximizable: false,
+      minimizable: false,
       webPreferences: {
         nodeIntegration: false,
         contextIsolation: true,

@@ -5,25 +5,51 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crear Nuevo Cliente</title>
+  <link rel="stylesheet" href="./createOrUpdateClientForm.css">
 </head>
 <body>
-  <button type="button" onclick="window.close()">Atrás</button>
+
   <div class="newClientContainer">
 
     <form id="clientForm">
+
+      <h1 class="formTitle"></h1>
+
+      <div class="nameContainer">
+        <label for="nameInput">Nombre :</label>
+        <input type="text" id="nameInput">
+      </div>
+
+      <div class="">
+        <label for="idCardInput">Cédula :</label>
+        <div class="idCardContainer">
+          <select id="preIdCardSelect">
+            <option value="V">V</option>
+            <option value="J">J</option>
+          </select>
+          <input type="number" id="idCardInput">
+        </div>
+      </div>
+
+      <div class="phoneNumberContainer">
+        <label for="phoneNumber">Teléfono :</label>
+        <input type="text" id="phoneNumber">
+      </div>
+
+      <button id="createBtn" type="button" style="display: none;">Crear</button>
+      <button id="updateBtn" type="button" style="display: none;">Guardar</button>
+
+
      
     </form>
+
   </div>
-
-  <script src="./CreateOrUpdateClientForm.js"></script>
   <script>
-
-    const clientForm = new CreateOrUpdateClientForm("clientForm");
-
     window.api.recieve("closeWindow", () => {
       window.close();
     })
-
   </script>
+  <script src="./createOrUpdateClientForm.js"></script>
+
 </body>
 </html>

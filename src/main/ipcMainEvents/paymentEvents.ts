@@ -30,6 +30,11 @@ export function addPaymentEvents(win: BrowserWindow, connection: Connection) {
       parent: win,
       modal: true,
       show: false,
+      width: 400,
+      height: 650,
+      maximizable: false,
+      minimizable: false,
+      // maximizable: false,
       webPreferences: {
         nodeIntegration: false,
         contextIsolation: true,
@@ -40,7 +45,6 @@ export function addPaymentEvents(win: BrowserWindow, connection: Connection) {
     newPaymentWin.loadURL(path.join(__dirname, "../../../src/renderer/payment/createPayment.html"));
     newPaymentWin.once('ready-to-show', async () => {
       newPaymentWin.show();
-      newPaymentWin.webContents.openDevTools();
       const paymentConfig: paymentConfig = await getPaymentConfig();
       newPaymentWin.webContents.send('paymentConfig', paymentConfig);
       if (isReturn) newPaymentWin.webContents.send('isReturn');

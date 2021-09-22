@@ -6,10 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guerra App</title>
   <style>
+    @font-face {
+    font-family: ubuntu;
+    src: url("../renderer/Ubuntu-Regular.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: alegreya-sans;
+      src: url("../renderer/AlegreyaSans-Medium.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: secular-one;
+      src: url("../renderer/SecularOne-Regular.ttf") format("truetype");
+    }
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
+      height: 100vh;
     }
     li {
       list-style: none;
@@ -17,30 +35,113 @@
     ul {
       padding: 0;
     }
-    main h3 {
+    header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 60%;
+    }
+    #mainDate {
+      padding: 10px 15px;
+      font-size: 20px;
+      font-family: ubuntu;
+      outline: none;
+    }
+    main {
+      flex-grow: 2;
+      padding-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      width: 85%;
+    }
+    main h1 {
       text-align: center;
-      font-size: 22px;
+      font-size: 25px;
+      font-family: secular-one;
+      padding: 20px 0px;
+      letter-spacing: 1px;
+      word-spacing: 8px;
+    }
+    .salesTreeContainer {
+      width: 100%;
+      position: relative;
+      flex-grow: 2;
     }
     .salesList {
       display: flex;
       flex-direction: column;
-      max-width: max-content;
-      height: 400px;
+      width: 100%;
+      height: 100%;
       border: 1px solid black;
       margin-bottom: 30px;
       font-size: 18px;
+      flex-grow: 2;
     }
     .salesList__header, .salesList__row {
       display: grid;
-      grid-template-columns: 125px 300px 125px;
-      padding: 4px;
+      grid-template-columns: 1fr 5fr 1fr;
+      padding: 5px;
+    }
+    .salesList__header {
+      background-color: #cbcbcb;
+    }
+    .salesList__row {
+      font-family: ubuntu;
+    }
+    .salesList__row.selected {
+      background-color: lightseagreen;
     }
     .salesList__header__title {
       font-weight: 700;
+      font-family: alegreya-sans;
+      font-size: 22px;
+      margin-right: 10px;
+      border-right: 2px solid gray;
     }
-    .salesList__row:hover {
+    .salesList__row:hover:not(.selected) {
       cursor: pointer;
-      background-color: aquamarine;
+      background-color: lightblue;
+    }
+    #addSaleBtn {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      background-image: url("../renderer/order/add.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      transition: .2s;
+    }
+    #addSaleBtn:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+    #deleteSaleBtn {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      background-image: url("../renderer/order/delete.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      right: 75px;
+      bottom: 20px;
+      transition: .2s;
+    }
+    #deleteSaleBtn:disabled {
+      opacity: .2;
+    }
+    #deleteSaleBtn:hover:enabled {
+      transform: scale(1.1);
+      cursor: pointer;
     }
     .summaryList {
       display: flex;
@@ -48,13 +149,23 @@
       width: max-content;
       border: 1px solid black;
       font-size: 18px;
+      width: 85%;
+      font-family: ubuntu;
+      margin-bottom: 25px;
     }
     .summaryList__header {
       font-weight: 700;
+      font-family: alegreya-sans;
+      font-size: 22px;
+      background-color: #cbcbcb;
+    }
+    .summaryList__header span {
+      margin-right: 10px;
+      border-right: 2px solid gray;
     }
     .summaryList__header, .summaryList__row {
       display: grid;
-      grid-template-columns: 100px 200px 125px 125px;
+      grid-template-columns: 1fr 2fr 1.2fr 1.2fr;
       padding: 5px;
     }
     .salesList__row__item--sale-id {
@@ -64,7 +175,99 @@
       list-style: none;
       padding: 0;
     }
-  </style>
+    #rateContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0px;
+      width: 250px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      position: relative;
+    }
+    #rateContainer .title {
+      display: inline-block;
+      font-family: alegreya-sans;
+      font-weight: 700;
+      font-size: 20px;
+    }
+    #rateContainer input {
+      font-size: 16px;
+      appearance: none;
+      outline: none;
+      margin: 5px 0px;
+      width: 120px;
+      font-family: ubuntu;
+      padding: 5px;
+      border-radius: 5px;
+      border:1px solid #cbcbcb;
+      box-shadow:inset 0 1px 2px rgba(0,0,0,0.18);
+      text-align: center;
+    }
+    #rateContainer input::-webkit-outer-spin-button,
+    #rateContainer input::-webkit-inner-spin-button {
+      display: none;
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    #rateContainer .rateSpan {
+      font-size: 16px;
+      font-family: ubuntu;
+      padding: 10px 0px;
+      border: 1px solid transparent;
+    }
+    #rateContainer .todayBtn {
+      border: none;
+      background-color: transparent;
+      background-image: url("../renderer/Dolartoday_logo.png");
+      background-position: left;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 25px;
+      left: 10px;
+      width: 35px;
+      height: 35px;
+      transition: .2s;
+    }
+    #rateContainer .todayBtn:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+    #rateContainer .acceptBtn {
+      border: none;
+      background-color: transparent;
+      background-image: url("../renderer/client/verify.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 30px;
+      right: 10px;
+      transition: .2s;
+    }
+    #rateContainer .changeBtn {
+      border: none;
+      background-color: transparent;
+      background-image: url("../renderer/client/change.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      top: 30px;
+      right: 10px;
+      transition: .2s;
+      outline: none;
+    }
+    .changeBtn:hover, .acceptBtn:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+    </style>
 </head>
 <body>
 
@@ -77,12 +280,15 @@
   </header>
 
   <main>
-    <h3>Ventas del Jueves 12 Agosto - 2021</h3>
-
-    <ol id="mainSaleList" class="salesList">
-
-    </ol>
-
+    <h1>Ventas del Jueves 12 Agosto - 2021</h1>
+    <div class="salesTreeContainer">
+      <ol id="mainSaleList" class="salesList">
+  
+      </ol>
+      <button type="button" id="addSaleBtn"></button>
+      <button type="button" id="deleteSaleBtn" disabled></button>
+    </div>
+    
   </main>
 
   <div class="summaryList">
@@ -117,11 +323,10 @@
 
   </div>
 
-  <button type="button" id="addSaleBtn">Crear venta</button>
-
   <!-- <button id="testBtn" type="button">Prueba</button> -->
 
   <script src="./RateFrame.js"></script>
   <script src="./renderer.js"></script>
+  
 </body>
 </html>

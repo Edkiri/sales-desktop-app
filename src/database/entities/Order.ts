@@ -15,7 +15,7 @@ export class Order {
   product: Product;
 
   @Column({
-    type: "smallint"
+    type: "float"
   })
   amount: number;
 

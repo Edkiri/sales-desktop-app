@@ -1,0 +1,127 @@
+@font-face {
+  font-family: ubuntu;
+  src: url("../Ubuntu-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: alegreya-sans;
+  src: url("../AlegreyaSans-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: secular-one;
+  src: url("../SecularOne-Regular.ttf") format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: secular-one;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
+  padding: 20px 0px;
+  font-size: 28px;
+}
+
+label {
+  font-size: 22px;
+  padding-bottom: 3px;
+  font-family: alegreya-sans;
+  font-weight: 700;
+}
+
+.newClientContainer {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 600px;
+  max-width: 450px;
+}
+
+#clientForm {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  justify-content: space-between;
+}
+
+input {
+  width: 100%;
+  padding:10px;
+  margin-top:10px;
+  margin-bottom:35px;
+  border-radius:5px;
+  border:1px solid #cbcbcb;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.18);
+  font-size:18px;
+  font-family: ubuntu;
+  outline: none;
+}
+.idCardContainer input {
+  width: auto;
+}
+.idCardContainer input::-webkit-outer-spin-button,
+.idCardContainer input::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+#preIdCardSelect {
+  padding:10px;
+  margin-top:10px;
+  margin-bottom:35px;
+  border-radius:5px;
+  border:1px solid #cbcbcb;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.18);
+  font-size:18px;
+}
+.idCardContainer {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+}
+
+#createBtn {
+  background:linear-gradient(to bottom,#22abe9 5%,#36caf0 100%);
+  box-shadow:inset 0 1px 0 0 #7bdcf4;
+  border:1px solid #0F799E;
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+  text-shadow:0 1px 0 #13506D;
+  padding: 5px 0px;
+  border-radius: 3px;
+  padding: 15px 0px;
+}
+#createBtn:hover{
+  background:linear-gradient(to bottom,#36caf0 5%,#22abe9 100%)
+}
+
+#updateBtn {
+  background:linear-gradient(to bottom,#22abe9 5%,#36caf0 100%);
+  box-shadow:inset 0 1px 0 0 #7bdcf4;
+  border:1px solid #0F799E;
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+  text-shadow:0 1px 0 #13506D;
+  padding: 5px 0px;
+  border-radius: 3px;
+  padding: 15px 0px;
+}
+#updateBtn:hover{
+  background:linear-gradient(to bottom,#36caf0 5%,#22abe9 100%)
+}

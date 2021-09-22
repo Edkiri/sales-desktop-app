@@ -3,15 +3,17 @@ class ProductTree {
   constructor(containerId) {
     this.container = document.getElementById(containerId);
     this.treeContainer = document.createElement('ol');
+    this.treeContainer.classList.add("productTree");
     this.createHeader();
     this.container.appendChild(this.treeContainer);
 
     this.preOrder = new PreOrderFrame(containerId);
 
     this.submitBtn = document.createElement('button');
+    this.submitBtn.classList.add("submitBtn");
     this.submitBtn.textContent = "Agregar";
     this.submitBtn.disabled = true;
-    this.container.appendChild(this.submitBtn);
+    this.container.parentElement.appendChild(this.submitBtn);
 
     this.addListeners();
   }
@@ -19,6 +21,7 @@ class ProductTree {
   
   createHeader() {
     const headerRow = document.createElement('li');
+    headerRow.classList.add("productTreeHeader");
     const brand = document.createElement('span');
     brand.textContent = "Marca";
     const name = document.createElement('span');
@@ -42,10 +45,11 @@ class ProductTree {
       this.createHeader();
       products.forEach(product => {
         const treeRow = document.createElement('li');
-        treeRow.className = "treeRow";
+        treeRow.classList.add("productTreeRow");
         treeRow.dataset.productId = product.id;
         treeRow.dataset.productName = product.name;
         treeRow.dataset.productPrice = product.price;
+        treeRow.dataset.productCode = product.code;
         const brand = document.createElement('span');
         brand.textContent = product.brand;
         const name = document.createElement('span');
@@ -62,35 +66,42 @@ class ProductTree {
     });
 
     document.addEventListener('click', e => {
-      if (e.target.matches('.treeRow span')) {
+      if (e.target.matches('.productTreeRow span')) {
         const treeRow = e.target.parentElement;
         this.selectRow(treeRow);
-      } else if(e.target.matches('.treeRow')) {
+      } else if(e.target.matches('.productTreeRow')) {
         const treeRow = e.target;
         this.selectRow(treeRow);
       }
     });
 
+    document.addEventListener('keydown', e => {
+      if(e.key == "Enter") {
+        const selectedRow = document.querySelector(".selected");
+        if(selectedRow) {
+          this.sendOrderData();
+        }
+      }
+    })
+
     this.submitBtn.onclick = this.sendOrderData.bind(this);
   }
 
-
-  selectRow(treeRow) {
-    this.unselectRow();
-    treeRow.classList.add("selected");
-    this.preOrder.update(
-      treeRow.dataset.productName, 
-      treeRow.dataset.productPrice
-    );
-    this.submitBtn.disabled = false;
-  }
-
-
-  unselectRow() {
-    const selectedRow = document.querySelector('.selected');
-    if (selectedRow) {
-      selectedRow.classList.remove('selected');
-    }
+  selectRow(tag) {
+    const selectedRow = document.querySelector(".productTreeRow.selected");
+    if (selectedRow == tag) {
+      tag.classList.remove('selected');
+      this.preOrder.disable();
+      this.submitBtn.disabled = true;
+    } else {
+      if(selectedRow) selectedRow.classList.remove('selected');
+      tag.classList.add("selected");
+      this.preOrder.update(
+        tag.dataset.productName, 
+        tag.dataset.productPrice
+      );
+      this.submitBtn.disabled = false;
+    };
   }
 
 
@@ -100,6 +111,7 @@ class ProductTree {
       productId: rowTree.dataset.productId,
       productName: rowTree.dataset.productName,
       productPrice: this.preOrder.price.value,
+      productCode: rowTree.dataset.productCode,
       amount: this.preOrder.amount.value
     }
     window.api.send("sendOrderData", orderData);

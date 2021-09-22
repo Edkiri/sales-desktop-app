@@ -4,6 +4,7 @@ const methodSelect = document.getElementById('method');
 const accountSelect = document.getElementById('account');
 const rateInput = document.getElementById('rate');
 const amountInput = document.getElementById('amount');
+const winTitle = document.querySelector('h1');
 
 const addBtn = document.getElementById('addButton');
 addBtn.onclick = () => {
@@ -76,10 +77,20 @@ window.api.recieve('closeWindow', () => {
 
 window.api.recieve('isReturn', () => {
   returnCheckbox.checked = true;
+  winTitle.textContent = "Nuevo Vuelto";
 })
 
 window.api.send('getDailyRate');
 window.api.recieve('rateValue', rate => {
-  console.log(rate);
   rateInput.value = rate;
 })
+
+returnCheckbox.addEventListener('click', e => {
+  if (returnCheckbox.checked) {
+    winTitle.textContent = "Nuevo Vuelto";
+  } else {
+    winTitle.textContent = "Nuevo Pago";
+  }
+})
+
+amountInput.focus();

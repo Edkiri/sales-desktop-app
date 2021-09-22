@@ -24,8 +24,6 @@ createConnection()
 
   const createMainWindow = () => {
     win = new BrowserWindow({
-      width: 800,
-      height: 600,
       webPreferences: {
         nodeIntegration: false,
         contextIsolation: true,
@@ -38,8 +36,9 @@ createConnection()
     
     
     win.once('ready-to-show', () => {
-      win.show()
-      win.webContents.openDevTools()
+      win.maximize();
+      win.show();
+      win.webContents.openDevTools();
     });
   };
   

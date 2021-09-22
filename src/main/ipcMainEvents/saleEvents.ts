@@ -18,6 +18,7 @@ export function addSaleEvents(win: BrowserWindow, connection: Connection): void 
   ipcMain.on('getDailySales', async (event, date: Date) => {
     const salesToPrint: SaleMainListRow[] = await getDailySales(connection, date)
     event.sender.send('printSales', salesToPrint);
+
   });
   
   ipcMain.on('createSale', (event) => {
@@ -66,13 +67,14 @@ export function addSaleEvents(win: BrowserWindow, connection: Connection): void 
       const productRepo = connection.getRepository(Product);
       for(const orderData of newSaleData.orders) {
         try {
+          console.log(orderData);
           const product = await productRepo.findOne(orderData.productId);
           orderRepo.save({
             sale: sale,
             product: product,
-            amount: <number>orderData.amount,
+            amount: <number>parseFloat(orderData.amount),
             date: new Date,
-            price: <number>parseFloat(orderData.total)
+            price: <number>parseFloat(orderData.productPrice)
           })
         } catch(err) {
           console.log("Error creando la orden");

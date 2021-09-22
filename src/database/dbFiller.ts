@@ -32,22 +32,22 @@ export async function fillTestDatabase(connection: Connection) {
   if (firstMethods.length === 0) {
 
     let methods: PaymentMethod[] = [];
-    METHODS.forEach(async methodName => {
+    for (const methodName of METHODS) {
       const method: PaymentMethod = await connection.getRepository(PaymentMethod).save({
-        name: methodName}
+            name: methodName}
       );
       methods.push(method);
-    })
+    }
   
     let currencies: Currency[] = []; 
-    CURRENCIES.forEach(async currencyList => {
+    for (const currencyList of CURRENCIES) {
       const currency: Currency = await connection.getRepository(Currency).save({
-        name: currencyList[0], 
-        symbol:currencyList[1]
-      });
+            name: currencyList[0], 
+            symbol: currencyList[1]
+          });
       currencies.push(currency);
-    })
-  
+    }
+    
     const client = await connection.getRepository(Client).save({
       name: "Eduardo Kiriakos", 
       identityCard: "V-25899242",

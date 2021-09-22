@@ -1,0 +1,116 @@
+@font-face {
+  font-family: ubuntu;
+  src: url("../Ubuntu-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: alegreya-sans;
+  src: url("../AlegreyaSans-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: secular-one;
+  src: url("../SecularOne-Regular.ttf") format("truetype");
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  padding: 20px;
+}
+li {
+  list-style: none;
+}
+ol {
+  padding: 0;
+}
+#clientTree {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  border: 1px solid black;
+  margin-bottom: 30px;
+  font-size: 18px;
+  width: 450px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-top: 15px;
+}
+#clientTree::-webkit-scrollbar {
+  display: none;
+}
+.clientTreeRow {
+  font-family: ubuntu;
+}
+.clientTreeRow:hover {
+  cursor: pointer;
+  background-color: lightblue;
+}
+.clientTreeHeader, .clientTreeRow {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 70% 1fr;
+  padding: 4px;
+}
+.clientTreeHeader span {
+  font-weight: 700;
+  font-family: secular-one;
+  margin-right: 10px;
+  border-right: 2px solid gray;
+}
+.clientTreeHeader {
+  background-color: #cbcbcb;
+}
+.main-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;   
+}
+
+.clientTreeRow.selected {
+  background-color: lightseagreen;
+}
+
+label {
+  font-family: alegreya-sans;
+  font-size: 22px;
+  font-weight: 700;
+}
+input {
+  font-size: 18px;
+  appearance: none;
+  outline: none;
+  margin-left: 10px;
+  width: 250px;
+  font-family: ubuntu;
+  padding: 10px;
+  border-radius: 5px;
+  border:1px solid #cbcbcb;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.18);
+}
+button {
+  background:linear-gradient(to bottom,#22abe9 5%,#36caf0 100%);
+  box-shadow:inset 0 1px 0 0 #7bdcf4;
+  border:1px solid #0F799E;
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+  text-shadow:0 1px 0 #13506D;
+  border-radius: 3px;
+  padding: 10px 0px;
+  font-family: secular-one;
+  width: 200px;
+}
+button:hover:enabled{
+  cursor: pointer;
+  background:linear-gradient(to bottom,#36caf0 5%,#22abe9 100%)
+}
+button:disabled {
+  opacity: .2;
+}

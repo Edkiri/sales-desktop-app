@@ -7,13 +7,16 @@ class PaymentTree extends Subject {
     this.payments = {};
 
     this.addPayBtn = document.createElement('button');
-    this.addPayBtn.textContent = "Pago";
-  
+    this.addPayBtn.type = "button";
+    this.addPayBtn.classList.add("addPayBtn"); 
+    
     this.addReturnBtn = document.createElement('button');
-    this.addReturnBtn.textContent = "Vuelto";
-
+    this.addReturnBtn.type = "button";
+    this.addReturnBtn.classList.add("addReturnBtn"); 
+    
     this.removePayBtn = document.createElement('button');
-    this.removePayBtn.textContent = "Eliminar";
+    this.removePayBtn.type = "button";
+    this.removePayBtn.classList.add("removePayBtn"); 
     this.removePayBtn.disabled = true;
 
     this.tree.parentElement.append(this.addPayBtn, this.addReturnBtn, this.removePayBtn);

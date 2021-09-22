@@ -1,14 +1,14 @@
 @font-face {
   font-family: secular-one;
-  src: url("../SecularOne-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/SecularOne-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: alegreya-sans;
-  src: url("../AlegreyaSans-Medium.ttf") format("truetype");
+  src: url("../assets/fonts/AlegreyaSans-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: ubuntu;
-  src: url("../Ubuntu-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/Ubuntu-Regular.ttf") format("truetype");
 }
 * {
   box-sizing: border-box;
@@ -66,7 +66,7 @@ ol {
 .paymentContainer .addPayBtn {
   background-color: transparent;
   border: none;
-  background-image: url("../order/add.png");
+  background-image: url("../assets/icons/add.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -84,7 +84,7 @@ ol {
 .paymentContainer .addReturnBtn {
   background-color: transparent;
   border: none;
-  background-image: url("./payment.png");
+  background-image: url("../assets/icons/payment.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -102,7 +102,7 @@ ol {
 .paymentContainer .removePayBtn {
   background-color: inherit;
   border: none;
-  background-image: url("../order/delete.png");
+  background-image: url("../assets/icons/delete.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

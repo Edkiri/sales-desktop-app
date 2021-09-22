@@ -1,14 +1,14 @@
 @font-face {
   font-family: secular-one;
-  src: url("../SecularOne-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/SecularOne-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: alegreya-sans;
-  src: url("../AlegreyaSans-Medium.ttf") format("truetype");
+  src: url("../assets/fonts/AlegreyaSans-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: ubuntu;
-  src: url("../Ubuntu-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/Ubuntu-Regular.ttf") format("truetype");
 }
 * {
   margin: 0;
@@ -31,7 +31,7 @@ header {
 .backBtn {
   display: inline-block;
   width: 35px;
-  background-image: url("back.svg");
+  background-image: url("../assets/icons/back.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -59,7 +59,7 @@ h1 {
   align-items: center;
 }
 .client-container .searchBtn {
-  background-image: url("../client/search.png");
+  background-image: url("../assets/icons/search.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -99,7 +99,7 @@ h1 {
 }
 .idCardContainer .verifyBtn {
   display: inline-block;
-  background-image: url("../client/verify.png");
+  background-image: url("../assets/icons/verify.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -137,7 +137,7 @@ h1 {
 .client-container .detailBtn {
   width: 30px;
   height: 25px;
-  background-image: url("../client/detail.png");
+  background-image: url("../assets/icons/detail.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -151,7 +151,7 @@ h1 {
 .client-container .changeBtn {
   width: 25px;
   height: 25px;
-  background-image: url("../client/change.png");
+  background-image: url("../assets/icons/change.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

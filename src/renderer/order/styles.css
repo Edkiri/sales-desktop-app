@@ -1,14 +1,14 @@
 @font-face {
   font-family: secular-one;
-  src: url("../SecularOne-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/SecularOne-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: alegreya-sans;
-  src: url("../AlegreyaSans-Medium.ttf") format("truetype");
+  src: url("../assets/fonts/AlegreyaSans-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: ubuntu;
-  src: url("../Ubuntu-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/Ubuntu-Regular.ttf") format("truetype");
 }
 * {
   box-sizing: border-box;
@@ -71,7 +71,7 @@ ol {
   width: 30px;
   height: 30px;
   background-color: transparent;
-  background-image: url("./add.png");
+  background-image: url("../assets/icons/add.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -91,7 +91,7 @@ ol {
   width: 30px;
   height: 30px;
   background-color: transparent;
-  background-image: url("./delete.png");
+  background-image: url("../assets/icons/delete.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld(
       let validChannels = [
         
         "getDailySales",
+        "getSummaryDayData",
         "setDailyRate",
         "createSale",
         "getDailyRate",

@@ -7,6 +7,8 @@ import { addClientEvents } from "./ipcMainEvents/clientEvents";
 import { addOrderEvents } from "./ipcMainEvents/orderEvents";
 import { addPaymentEvents } from "./ipcMainEvents/paymentEvents";
 import { addSaleEvents } from "./ipcMainEvents/saleEvents";
+import { Payment } from "../database/entities/Payment";
+import * as dayjs from "dayjs";
 
 let win: BrowserWindow;
 let connection: Connection;
@@ -65,3 +67,86 @@ ipcMain.on("setDailyRate", (event, dailyRate) => {
     event.sender.send('rateValue', DAILY_RATE);
   }
 })
+
+
+interface Summary {
+  bs: number;
+  usd: number;
+  total: number;
+}
+interface SummaryData {
+  summaryDay: Summary;
+  summaryWeek: Summary;
+  summaryMonth: Summary;
+}
+
+ipcMain.on("getSummaryDayData", async (e, date: Date) => {
+  const summaryData: SummaryData = await getSummaryData(date);
+  e.sender.send("summaryData", summaryData);
+})
+
+async function getSummaryData(date: Date): Promise<SummaryData> {
+  const summaryDay: Summary = await getDaylySummary(date);
+  const summaryWeek: Summary = await getWeekSummary(date);
+  const summaryMonth: Summary = await getMonthlySummary(date);
+  return {
+    summaryDay,
+    summaryWeek,
+    summaryMonth
+  }
+}
+
+async function getMonthlySummary(date: Date): Promise<Summary> {
+  const monthDay: string = dayjs(date).toISOString();
+  const firstMonthDay: string = dayjs(date).startOf('month').toISOString();
+  const monthlyPayments: Payment[] = await connection.getRepository(Payment)
+    .createQueryBuilder("payment")
+    .leftJoinAndSelect("payment.currency", "currency")
+    .andWhere("payment.date >= :before", {before: firstMonthDay})
+    .andWhere("payment.date <= :after", {after: monthDay})
+    .getMany()
+  const monthlySummary: Summary = getSummary(monthlyPayments);
+  return monthlySummary;
+}
+
+async function getWeekSummary(date: Date): Promise<Summary> {
+  const weekDay: string = dayjs(date).toISOString();
+  const mondayWeekDay: string = dayjs(date).startOf('week').toISOString();
+  const weeklyPayments: Payment[] = await connection.getRepository(Payment)
+    .createQueryBuilder("payment")
+    .leftJoinAndSelect("payment.currency", "currency")
+    .andWhere("payment.date >= :before", {before: mondayWeekDay})
+    .andWhere("payment.date <= :after", {after: weekDay})
+    .getMany()
+  const weeklySummary: Summary = getSummary(weeklyPayments);
+  return weeklySummary;
+}
+
+async function getDaylySummary(date: Date): Promise<Summary> {
+  const targetDate: string = dayjs(date).toISOString();
+  const daylyPayments: Payment[] = await connection.getRepository(Payment)
+    .createQueryBuilder("payment")
+    .leftJoinAndSelect("payment.currency", "currency")
+    .where("payment.date = :date", { date: targetDate})
+    .getMany();
+  const daylySummary: Summary = getSummary(daylyPayments);
+  return daylySummary;
+}
+
+function getSummary(payments: Payment[]): Summary {
+  const summary: Summary = {
+    bs: 0,
+    usd: 0,
+    total: 0
+  };
+  for(const payment of payments) {
+    if(payment.currency.id == 1) {
+      summary.usd += payment.amount;
+      summary.total += payment.amount;
+    } else {
+      summary.bs += payment.amount;
+      summary.total += payment.amount / payment.rate;
+    }
+  }
+  return summary;
+}

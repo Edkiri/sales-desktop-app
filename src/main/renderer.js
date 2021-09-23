@@ -12,6 +12,7 @@ const rateFrame = new RateFrame("rateContainer");
 function handler(e) {
   date = new Date(e.target.value);
   window.api.send('getDailySales', date);
+  window.api.send("getSummaryDayData", date);
 }
 
 (window).api.recieve("printSales", (salesToPrint) =>  {
@@ -104,3 +105,32 @@ function selectRow(tag) {
     deleteSaleBtn.disabled = false;
   };
 }
+
+
+window.api.send("getSummaryDayData", new Date(mainDate.value));
+
+const bsDay = document.getElementById("bsDay");
+const usdDay = document.getElementById("usdDay");
+const totalDay = document.getElementById("totalDay");
+
+const bsWeek = document.getElementById("bsWeek");
+const usdWeek = document.getElementById("usdWeek");
+const totalWeek = document.getElementById("totalWeek");
+
+const bsMonth = document.getElementById("bsMonth");
+const usdMonth = document.getElementById("usdMonth");
+const totalMonth = document.getElementById("totalMonth");
+
+window.api.recieve("summaryData", data => {
+  bsDay.textContent = data.summaryDay.bs;
+  usdDay.textContent = data.summaryDay.usd;
+  totalDay.textContent = data.summaryDay.total;
+
+  bsWeek.textContent = data.summaryWeek.bs;
+  usdWeek.textContent = data.summaryWeek.usd;
+  totalWeek.textContent = data.summaryWeek.total;
+
+  bsMonth.textContent = data.summaryMonth.bs;
+  usdMonth.textContent = data.summaryMonth.usd;
+  totalMonth.textContent = data.summaryMonth.total;
+});

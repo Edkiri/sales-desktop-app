@@ -121,16 +121,16 @@ const bsMonth = document.getElementById("bsMonth");
 const usdMonth = document.getElementById("usdMonth");
 const totalMonth = document.getElementById("totalMonth");
 
-window.api.recieve("summaryData", data => {
-  bsDay.textContent = data.summaryDay.bs;
-  usdDay.textContent = data.summaryDay.usd;
-  totalDay.textContent = data.summaryDay.total;
+window.api.recieve("summaryData", summaryData => {
+  bsDay.textContent = summaryData.summaryDay.bs;
+  usdDay.textContent = summaryData.summaryDay.usd;
+  totalDay.textContent = summaryData.summaryDay.total;
 
-  bsWeek.textContent = data.summaryWeek.bs;
-  usdWeek.textContent = data.summaryWeek.usd;
-  totalWeek.textContent = data.summaryWeek.total;
+  bsWeek.textContent = summaryData.summaryWeek.bs;
+  usdWeek.textContent = summaryData.summaryWeek.usd;
+  totalWeek.textContent = summaryData.summaryWeek.total;
 
-  bsMonth.textContent = data.summaryMonth.bs;
-  usdMonth.textContent = data.summaryMonth.usd;
-  totalMonth.textContent = data.summaryMonth.total;
+  bsMonth.textContent = summaryData.summaryMonth.bs;
+  usdMonth.textContent = summaryData.summaryMonth.usd;
+  totalMonth.textContent = summaryData.summaryMonth.total;
 });

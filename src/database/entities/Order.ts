@@ -8,7 +8,9 @@ export class Order {
   @PrimaryGeneratedColumn ()
   id: number;
 
-  @ManyToOne(() => Sale, sale => sale.orders)
+  @ManyToOne(() => Sale, sale => sale.orders, {
+    createForeignKeyConstraints: false
+  })
   sale: Sale;
 
   @ManyToOne('Product')

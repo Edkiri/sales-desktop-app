@@ -44,12 +44,7 @@ function handler(e) {
     // List Row
     const salesListRow = document.createElement('li');
     salesListRow.className = "salesList__row";
-
-    // Sale Id
-    const saleId = document.createElement('span');
-    saleId.className = "salesList__row__item--sale-id";
-    saleId.textContent = sale.id;
-    salesListRow.appendChild(saleId);
+    salesListRow.dataset.saleId = sale.id;
 
     // Sale State
     const saleState = document.createElement('span');
@@ -83,6 +78,12 @@ addSaleBtn.onclick = () => {
   }
 }
 const deleteSaleBtn = document.getElementById("deleteSaleBtn");
+deleteSaleBtn.onclick = () => {
+  const selectedRow = document.querySelector('.salesList__row.selected');
+  const saleId = selectedRow.dataset.saleId;
+  console.log(saleId);
+  window.api.send("deleteSale", saleId);
+}
 
 document.addEventListener('click', e => {
   if (e.target.matches('.salesList__row span')) {
@@ -134,3 +135,10 @@ window.api.recieve("summaryData", summaryData => {
   usdMonth.textContent = summaryData.summaryMonth.usd;
   totalMonth.textContent = summaryData.summaryMonth.total;
 });
+
+
+window.api.recieve("saleDeleted", saleId => {
+  const deletedSaleRow = document.querySelector(`[data-sale-id='${saleId}']`);
+  deletedSaleRow.remove();
+  window.api.send("getSummaryDayData", new Date(mainDate.value));
+})

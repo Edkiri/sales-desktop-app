@@ -10,7 +10,9 @@ export class Payment {
   @PrimaryGeneratedColumn ()
   id: number;
 
-  @ManyToOne(() => Sale, sale => sale.payments)
+  @ManyToOne(() => Sale, sale => sale.payments, {
+    createForeignKeyConstraints: false
+  })
   sale: Sale;
 
   @Column({

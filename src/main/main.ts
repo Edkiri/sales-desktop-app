@@ -8,6 +8,8 @@ import { addOrderEvents } from "./ipcMainEvents/orderEvents";
 import { addPaymentEvents } from "./ipcMainEvents/paymentEvents";
 import { addSaleEvents } from "./ipcMainEvents/saleEvents";
 import { Payment } from "../database/entities/Payment";
+import { Sale } from "../database/entities/Sale";
+import { Order } from "../database/entities/Order";
 import * as dayjs from "dayjs";
 
 let win: BrowserWindow;
@@ -150,3 +152,27 @@ function getSummary(payments: Payment[]): Summary {
   }
   return summary;
 }
+
+ipcMain.on("deleteSale", async (event, saleId) => {
+  try {
+    await connection.createQueryBuilder()
+      .delete()
+      .from(Sale)
+      .where("id = :id", {id: saleId})
+      .execute();
+    await connection.createQueryBuilder()
+      .delete()
+      .from(Payment)
+      .where("sale = :saleId", {saleId: saleId})
+      .execute();
+    await connection.createQueryBuilder()
+      .delete()
+      .from(Order)
+      .where("sale = :saleId", {saleId: saleId})
+      .execute();
+    event.sender.send("saleDeleted", saleId);
+  } catch (err) {
+    console.error("Error borrando la venta.");
+    console.error(err);
+  }
+})
